@@ -1,27 +1,24 @@
 from random import random
 from pmp.preferences import Approval
-import pmp as pmp
 from pmp.preferences import Profile
 from pmp.rules import SNTV, Borda, ChamberlinCourant as CC, PAV, Bloc
 from pmp.preferences import Ordinal
 from pmp.experiments import ExperimentConfig, generate_uniform, generate_gauss, experiment_config, impartial
 import random
 from scipy.spatial import distance
-from sklearn.neighbors import NearestNeighbors
 import numpy as np
+from functools import reduce
 
 
 def Copeland_winner(list_of_lists_votes):
     a = np.array(list_of_lists_votes)
-    print (a)
-    print ("shape" + str(a.shape))
     n, m = a.shape
     scores = np.zeros(m)
     for m1 in range(m):
         for m2 in range(m1 + 1, m):
-            m1prefm2 = 0  # m1prefm2 would hold #voters with m1 \pref m2
-            for v in list_of_lists_votes:
-                if (v.tolist().index(m1) < v.tolist().index(m2)):
+            m1prefm2 = 0  # m1prefm2 would hold #voters with m1 \pref
+            for v in a:
+                if (v[m1] < v[m2]):
                     m1prefm2 += 1
             m2prefm1 = n - m1prefm2
             if (m1prefm2 == m2prefm1):
@@ -32,9 +29,29 @@ def Copeland_winner(list_of_lists_votes):
             else:
                 scores[m2] += 1
     winner = np.argwhere(scores == np.max(scores)).flatten().tolist()
-
     return winner, scores
 
+
+def Borda_winner(list_of_lists_votes):
+    a = np.array(list_of_lists_votes)
+    n, m = a.shape
+    scores = np.zeros(reduce(lambda count, l: count + len(l), a, 0))
+    for i in range(n):
+        for j in range(m):
+            scores[a[i][j]] += m - j - 1
+    winner = np.argwhere(scores == np.max(scores)).flatten().tolist()
+    return winner, scores
+
+
+def plurality_winner(list_of_lists_votes):
+    a = np.array(list_of_lists_votes)
+    n, m = a.shape
+    scores = np.zeros(reduce(lambda count, l: count + len(l), a, 0))
+    for i in range(n):
+        scores[a[i][0]] += 1
+    winner = np.argwhere(scores == np.max(scores)).flatten().tolist()
+
+    return winner, scores
 
 
 def ordinal_randomizer(candidates_num, comittee_size, voters_num):
@@ -62,7 +79,6 @@ def ordinal_multi_winner():
     candidates = range(0, 9)
     preferences = [Ordinal(o) for o in orders]
     preferences_for_PAV = [Approval(a) for a in orders]
-    profile = Profile(candidates, preferences)
     print("Instances: " + str(orders))
     profile = Profile(candidates, preferences)
     Profile_approval_for_PAV = Profile(candidates, preferences_for_PAV)
@@ -159,11 +175,7 @@ if __name__ == "__main__":
 
     print(distance.euclidean(committee_PAV, committee_bloc))
 
-    D = distance.squareform(distance.pdist(drop_down_list_approval))
-    print(np.round(D, 1))
-    closest = np.argsort(D, axis=1)
-    print(closest)
-    print("----------")
-    k = 1  # For each point, find the 3 closest points
-    print(closest[:, 1:k + 1])
-
+    orders = ordinal_randomizer(9, 3, 5)
+    print (Copeland_winner(orders))
+    print (Borda_winner(orders))
+    print (plurality_winner(orders))
