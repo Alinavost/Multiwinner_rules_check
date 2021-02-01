@@ -136,9 +136,15 @@ def checking_ranking(chose, list_of_lists):
     return list_of_counters
 
 
+def winner_rule (list_of_choises):
+    winner_borda = Borda_winner(list_of_choises)
+    winner_copeland = Copeland_winner(list_of_choises)
+    winner_Plurality = plurality_winner(list_of_choises)
+    return winner_borda, winner_copeland, winner_Plurality
+
 if __name__ == "__main__":
-    a = checking_ranking([1, 2, 3], [[1, 2, 3], [1, 3, 2], [4, 5, 6]])
-    print("a:" + str(a))
+    a = checking_ranking([1, 2, 3], [[1, 2, 3], [4, 5, 6], [1, 3, 2]])
+    print("b: " + str(a))
     ##############Ordinal choise#############
 
     print(counterSummary(3, 1, 3, 0))
@@ -175,7 +181,4 @@ if __name__ == "__main__":
 
     print(distance.euclidean(committee_PAV, committee_bloc))
 
-    orders = ordinal_randomizer(9, 3, 5)
-    print (Copeland_winner(orders))
-    print (Borda_winner(orders))
-    print (plurality_winner(orders))
+

@@ -1,176 +1,188 @@
 <!DOCTYPE html>
 
 <head>
-<!--    <meta charset="utf-8">-->
-<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
-<!--    <title>Multiwinner election algorithem</title>-->
-<!--    <meta name="description" content="">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
-<!--    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
-<!--    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">-->
-<!--    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">-->
-<!--    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
-<!--    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">-->
-<!--</head>-->
-<!--<body>-->
-<!--<div class="container">-->
-<!--    <table style="background-color: black;" align="center">-->
-<!--        <tr> &lt;!&ndash;first row of table&ndash;&gt;-->
-<!--            <td> &lt;!&ndash;cells or section in side row&ndash;&gt;-->
-<!--                <img src="static/images/elections.jpg" alt="No Image"-->
-<!--                     style='padding:1px; border:0px solid #021a40; width: 300px; height: 200px'>-->
-<!--            </td>-->
+    <!--    <meta charset="utf-8">-->
+    <!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <!--    <title>Multiwinner election algorithem</title>-->
+    <!--    <meta name="description" content="">-->
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <!--    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+    <!--    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">-->
+    <!--    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">-->
+    <!--    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
+    <!--    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">-->
+    <!--</head>-->
+    <!--<body>-->
+    <!--<div class="container">-->
+    <!--    <table style="background-color: black;" align="center">-->
+    <!--        <tr> &lt;!&ndash;first row of table&ndash;&gt;-->
+    <!--            <td> &lt;!&ndash;cells or section in side row&ndash;&gt;-->
+    <!--                <img src="static/images/elections.jpg" alt="No Image"-->
+    <!--                     style='padding:1px; border:0px solid #021a40; width: 300px; height: 200px'>-->
+    <!--            </td>-->
 
-<!--            <td width="600px">-->
-<!--                <h1 style="text-align: center;"><font color="white"-->
-<!--                                                      style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; letter-spacing: 0.01em; font-size: 50px;">Multiwinner-->
-<!--                    rules prediction</font></h1>-->
-<!--            </td>-->
-<!--        </tr>-->
-<!--    </table>-->
-<!--</div>-->
+    <!--            <td width="600px">-->
+    <!--                <h1 style="text-align: center;"><font color="white"-->
+    <!--                                                      style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; letter-spacing: 0.01em; font-size: 50px;">Multiwinner-->
+    <!--                    rules prediction</font></h1>-->
+    <!--            </td>-->
+    <!--        </tr>-->
+    <!--    </table>-->
+    <!--</div>-->
 
-<!--<div cellpadding='10' align="center">-->
+    <!--<div cellpadding='10' align="center">-->
 
-<!--    <div colspan="3">-->
-<!--        <H3 align="center">Answer a few questions and get the best rule to suit your preferences!</H3>-->
-<!--    </div>-->
+    <!--    <div colspan="3">-->
+    <!--        <H3 align="center">Answer a few questions and get the best rule to suit your preferences!</H3>-->
+    <!--    </div>-->
 
-<!--    <form method="post">-->
-<!--        <div>-->
-<!--            <div width="300px">-->
-<!--                <div style="text-align: center;">-->
-<!--                    <div>-->
-<!--                        Consider 5 votings which consists the following order:-->
-<!--                        {{ first_orders }}-->
-<!--                    </div>-->
-<!--                    <div class="dropdownlist">-->
-<!--                        <label>Choose a committe:-->
-<!--                            <span>-->
-<!--                                <select name="answer1">-->
-<!--                                    {% for index in  range(0, len) %}-->
-<!--                                    <option value="{{ index }}">{{ first_committee[index] }}</option>-->
-<!--                                    {% endfor %}-->
-<!--                                </select>-->
-<!--                                     <input type="hidden" name="question1" value="{{first_committee}}">-->
-<!--                            </span>-->
-<!--                        </label>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        Consider 5 votings which consists the following order:-->
-<!--                        {{ second_orders }}-->
-<!--                    </div>-->
-<!--                    <div class="dropdownlist">-->
-<!--                        <label>Choose a committe:-->
-<!--                            <span>-->
-<!--                                <select name="answer2">-->
-<!--                                    {% for index in  range(0, len) %}-->
-<!--                                    <option value="{{ index }}">{{ second_committee[index] }}</option>-->
-<!--                                    {% endfor %}-->
-<!--                                </select>-->
-<!--                                   <input type="hidden" name="question2" value="{{second_committee}}">-->
-<!--                            </span>-->
-<!--                        </label>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        Consider 5 votings which consists the following order:-->
-<!--                        {{ third_orders }}-->
-<!--                    </div>-->
-<!--                    <div class="dropdownlist">-->
-<!--                        <label>Choose a committe:-->
-<!--                            <span>-->
-<!--                                <select name="answer3">-->
-<!--                                    {% for index in  range(0, len) %}-->
-<!--                                    <option value="{{ index }}">{{ third_committee[index] }}</option>-->
-<!--                                    {% endfor %}-->
-<!--                                </select>-->
-<!--                                  <input type="hidden" name="question3" value="{{third_committee}}">-->
-<!--                            </span>-->
-<!--                        </label>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        Consider 5 votings which consists the following order:-->
-<!--                        {{ forth_orders }}-->
-<!--                    </div>-->
-<!--                    <div class="dropdownlist">-->
-<!--                        <label>Choose a committe:-->
-<!--                            <span>-->
-<!--                                <select name="answer4">-->
-<!--                                    {% for index in  range(0, len) %}-->
-<!--                                    <option value="{{ index }}">{{ forth_committee[index] }}</option>-->
-<!--                                    {% endfor %}-->
-<!--                                </select>-->
-<!--                                <input type="hidden" name="question4" value="{{forth_committee}}">-->
-<!--                            </span>-->
-<!--                        </label>-->
-<!--                    </div>-->
-<!--                </div>-->
+    <!--    <form method="post">-->
+    <!--        <div>-->
+    <!--            <div width="300px">-->
+    <!--                <div style="text-align: center;">-->
+    <!--                    <div>-->
+    <!--                        Consider 5 votings which consists the following order:-->
+    <!--                        {{ first_orders }}-->
+    <!--                    </div>-->
+    <!--                    <div class="dropdownlist">-->
+    <!--                        <label>Choose a committe:-->
+    <!--                            <span>-->
+    <!--                                <select name="answer1">-->
+    <!--                                    {% for index in  range(0, len) %}-->
+    <!--                                    <option value="{{ index }}">{{ first_committee[index] }}</option>-->
+    <!--                                    {% endfor %}-->
+    <!--                                </select>-->
+    <!--                                     <input type="hidden" name="question1" value="{{first_committee}}">-->
+    <!--                            </span>-->
+    <!--                        </label>-->
+    <!--                    </div>-->
+    <!--                    <div>-->
+    <!--                        Consider 5 votings which consists the following order:-->
+    <!--                        {{ second_orders }}-->
+    <!--                    </div>-->
+    <!--                    <div class="dropdownlist">-->
+    <!--                        <label>Choose a committe:-->
+    <!--                            <span>-->
+    <!--                                <select name="answer2">-->
+    <!--                                    {% for index in  range(0, len) %}-->
+    <!--                                    <option value="{{ index }}">{{ second_committee[index] }}</option>-->
+    <!--                                    {% endfor %}-->
+    <!--                                </select>-->
+    <!--                                   <input type="hidden" name="question2" value="{{second_committee}}">-->
+    <!--                            </span>-->
+    <!--                        </label>-->
+    <!--                    </div>-->
+    <!--                    <div>-->
+    <!--                        Consider 5 votings which consists the following order:-->
+    <!--                        {{ third_orders }}-->
+    <!--                    </div>-->
+    <!--                    <div class="dropdownlist">-->
+    <!--                        <label>Choose a committe:-->
+    <!--                            <span>-->
+    <!--                                <select name="answer3">-->
+    <!--                                    {% for index in  range(0, len) %}-->
+    <!--                                    <option value="{{ index }}">{{ third_committee[index] }}</option>-->
+    <!--                                    {% endfor %}-->
+    <!--                                </select>-->
+    <!--                                  <input type="hidden" name="question3" value="{{third_committee}}">-->
+    <!--                            </span>-->
+    <!--                        </label>-->
+    <!--                    </div>-->
+    <!--                    <div>-->
+    <!--                        Consider 5 votings which consists the following order:-->
+    <!--                        {{ forth_orders }}-->
+    <!--                    </div>-->
+    <!--                    <div class="dropdownlist">-->
+    <!--                        <label>Choose a committe:-->
+    <!--                            <span>-->
+    <!--                                <select name="answer4">-->
+    <!--                                    {% for index in  range(0, len) %}-->
+    <!--                                    <option value="{{ index }}">{{ forth_committee[index] }}</option>-->
+    <!--                                    {% endfor %}-->
+    <!--                                </select>-->
+    <!--                                <input type="hidden" name="question4" value="{{forth_committee}}">-->
+    <!--                            </span>-->
+    <!--                        </label>-->
+    <!--                    </div>-->
+    <!--                </div>-->
 
-<!--            </div>-->
-<!--        </div>-->
-<!--        <button style="margin-top:20px;" type="submit">Submit</button>-->
-<!--    </form>-->
-<!--</div>-->
-<!--</body>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <button style="margin-top:20px;" type="submit">Submit</button>-->
+    <!--    </form>-->
+    <!--</div>-->
+    <!--</body>-->
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="{{ url_for('static', filename='javascript/javascript.js') }}"></script>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-         <script type="text/javascript">
+    <header class="text-white text-center">
+        <h1 class="display-4">Multiwinner algorithem predictor</h1>
+    </header>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="{{ url_for('static', filename='javascript/javascript.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script type="text/javascript">
             var second_order = {{ second_orders }}
             var second_committee = {{ second_committee }}
-        </script>
-<!------ Include the above in your HEAD tag ---------->
+            var questions = {{ questions }}
 
-<div class="container-fluid bg-info">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>
-                    <span class="label label-warning" id="qid"></span>
-                    <div id="main_question">
-                        Consider 5 votings which consists of the following order: {{ first_orders }}
+
+
+    </script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <div class="container-fluid bg-info">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>
+                        <span class="label label-warning" id="qid"></span>
+                        <div id="main_question">
+                            Consider 5 votings which consists of the following order: {{ first_orders }}
+                        </div>
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xs-3 col-xs-offset-5">
+                        <div id="loadbar" style="display: none;">
+                            <div class="blockG" id="rotateG_01"></div>
+                            <div class="blockG" id="rotateG_02"></div>
+                            <div class="blockG" id="rotateG_03"></div>
+                            <div class="blockG" id="rotateG_04"></div>
+                            <div class="blockG" id="rotateG_05"></div>
+                            <div class="blockG" id="rotateG_06"></div>
+                            <div class="blockG" id="rotateG_07"></div>
+                            <div class="blockG" id="rotateG_08"></div>
+                        </div>
                     </div>
-                </h3>
-            </div>
-            <div class="modal-body">
-                <div class="col-xs-3 col-xs-offset-5">
-                    <div id="loadbar" style="display: none;">
-                        <div class="blockG" id="rotateG_01"></div>
-                        <div class="blockG" id="rotateG_02"></div>
-                        <div class="blockG" id="rotateG_03"></div>
-                        <div class="blockG" id="rotateG_04"></div>
-                        <div class="blockG" id="rotateG_05"></div>
-                        <div class="blockG" id="rotateG_06"></div>
-                        <div class="blockG" id="rotateG_07"></div>
-                        <div class="blockG" id="rotateG_08"></div>
+
+                    <div class="quiz" id="quiz" data-toggle="buttons">
+                        <label onclick="getNextQuestion(0);" id="first_option"
+                               class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i
+                                class="glyphicon glyphicon-chevron-right"></i></span><input type="radio" name="q_answer"
+                                                                                            value="0">{{first_committee[0]}}</label>
+                        <label onclick="getNextQuestion(1);" id="second_option"
+                               class="element-animation2 btn btn-lg btn-primary btn-block"><span class="btn-label"><i
+                                class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio"
+                                                                                             name="q_answer"
+                                                                                             value="1">{{first_committee[1]}}</label>
+                        <label onclick="getNextQuestion(2);" id="third_option"
+                               class="element-animation3 btn btn-lg btn-primary btn-block"><span class="btn-label"><i
+                                class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio"
+                                                                                             name="q_answer"
+                                                                                             value="2">{{first_committee[2]}}</label>
+                        <label onclick="getNextQuestion(3);" id="forth_option"
+                               class="element-animation4 btn btn-lg btn-primary btn-block"><span class="btn-label"><i
+                                class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio"
+                                                                                             name="q_answer"
+                                                                                             value="3">{{first_committee[3]}}</label>
                     </div>
                 </div>
-
-                <div class="quiz" id="quiz" data-toggle="buttons">
-                    <label id="first_option" class="element-animation1 btn btn-lg btn-primary btn-block">
-                        <span class="btn-label">
-                            <i   class="glyphicon glyphicon-chevron-right"></i></span>
-                        <input type="radio" name="q_answer"
-                               value="0">{{first_committee[0]}}</label>
-                    <label id="second_option" class="element-animation2 btn btn-lg btn-primary btn-block"><span class="btn-label"><i
-                            class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer"
-                                                                                         value="1">{{first_committee[1]}}</label>
-                    <label id="third_option" class="element-animation3 btn btn-lg btn-primary btn-block"><span class="btn-label"><i
-                            class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer"
-                                                                                         value="2">{{first_committee[2]}}</label>
-                    <label id="forth_option" class="element-animation4 btn btn-lg btn-primary btn-block"><span class="btn-label"><i
-                            class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer"
-                                                                                         value="3">{{first_committee[3]}}</label>
+                <div class="modal-footer text-muted">
+                    <span id="answer"></span>
                 </div>
-
-            </div>
-            <div class="modal-footer text-muted">
-                <span id="answer"></span>
             </div>
         </div>
     </div>
-</div>
 </head>

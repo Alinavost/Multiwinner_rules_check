@@ -69,14 +69,14 @@ def home():
         forth_committee = ordinal_multi_winner()
         forth_orders = forth_committee[4]
         forth_committee.remove(forth_orders)
-
+        questions = [second_orders, second_committee, third_orders, third_committee, forth_orders, forth_committee]
         return render_template('base.html', first_committee=first_committee, second_committee=second_committee,
                                third_committee=third_committee, forth_committee=forth_committee,
                                first_orders=first_orders,
                                second_orders=second_orders, third_orders=third_orders, forth_orders=forth_orders,
-                               len=len(first_committee))
+                               len=len(first_committee), questions=questions)
 
 
 if __name__ == '__main__':
     app.run(debug=True, use_debugger=False, use_reloader=False, passthrough_errors=True)
-    app.run(host='0.0.0.0')
+    # app.run(host='0.0.0.0')
