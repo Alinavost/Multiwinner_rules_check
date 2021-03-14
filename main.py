@@ -3,7 +3,7 @@ from pmp.preferences import Approval
 from pmp.preferences import Profile
 from pmp.rules import SNTV, Borda, ChamberlinCourant as CC, PAV, Bloc
 from pmp.preferences import Ordinal
-from pmp.experiments import ExperimentConfig, generate_uniform, generate_gauss, experiment_config, impartial
+from pmp.experiments import ExperimentConfig, generate_uniform, generate_gauss, experiment_config, impartial, Histogram
 import random
 from scipy.spatial import distance
 import numpy as np
@@ -74,9 +74,9 @@ def ordinal_multi_winner():
     global k, candidates, sntv, committee_sntv, borda, committe_borda, bloc, committee_bloc, pav, committee_PAV, drop_down_list_orders
     n = 5  # How many voters
     m = 9  # How many Options
-    k = 3  # Committe size
-    orders = ordinal_randomizer(9, 3, 5)
-    candidates = range(0, 9)
+    k = 4  # Committe size
+    orders = ordinal_randomizer(4, 4, 4)
+    candidates = range(0, 4)
     preferences = [Ordinal(o) for o in orders]
     preferences_for_PAV = [Approval(a) for a in orders]
     print("Instances: " + str(orders))
@@ -180,5 +180,4 @@ if __name__ == "__main__":
     print(drop_down_list_approval)
 
     print(distance.euclidean(committee_PAV, committee_bloc))
-
 

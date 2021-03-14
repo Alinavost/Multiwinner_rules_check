@@ -70,11 +70,15 @@ def home():
         forth_orders = forth_committee[4]
         forth_committee.remove(forth_orders)
         questions = [second_orders, second_committee, third_orders, third_committee, forth_orders, forth_committee]
+        pictures = [["Bloc Gauss", "bloc uniform", "kborda Gauss", "kborda uniform"]]
+        # pictures = "eGASD"
+        # pictures = [[["0, 1, 3"], [0, 1, 3]], [13, 32, 3]]
+
         return render_template('base.html', first_committee=first_committee, second_committee=second_committee,
                                third_committee=third_committee, forth_committee=forth_committee,
                                first_orders=first_orders,
                                second_orders=second_orders, third_orders=third_orders, forth_orders=forth_orders,
-                               len=len(first_committee), questions=questions)
+                               len=len(first_committee), questions=questions, pictures=pictures)
 
 
 if __name__ == '__main__':
