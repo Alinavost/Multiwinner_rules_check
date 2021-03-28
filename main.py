@@ -72,8 +72,6 @@ def Aproval_randomizer(candidates_num, comittee_size, voters_num):
 
 def ordinal_multi_winner():
     global k, candidates, sntv, committee_sntv, borda, committe_borda, bloc, committee_bloc, pav, committee_PAV, drop_down_list_orders
-    n = 5  # How many voters
-    m = 9  # How many Options
     k = 4  # Committe size
     orders = ordinal_randomizer(4, 4, 4)
     candidates = range(0, 4)
@@ -153,7 +151,7 @@ if __name__ == "__main__":
     print("-----------------------------------------------------------")
     ###########Approval based#############
 
-    approves = Aproval_randomizer(9, 3, 5)
+    approves = Aproval_randomizer(4, 4, 4)
 
     print("Instances: " + str(approves))
 
